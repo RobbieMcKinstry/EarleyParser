@@ -1,0 +1,21 @@
+include an expandTable() function into stringTable, using memcpy()
+
+include an expandTable() function into stringIndexTable, using memcpy()
+
+write the code that actually takes a Lex* and adds its lexeme to the symbol table, using the functions in stringTable and stringIndexTable 
+
+write unit tests for everything.
+
+add an AddNewElementToStringTable() function, which accepts a string and stores it in the stringBuffer and the stringIndexTable
+
+hashlink file
+
+hashtable file
+
+tokenKind file
+ 
+frame file
+
+queue file
+
+memo file
