@@ -21,5 +21,6 @@ StringTable* newStringTable();
 bool strTableCanFit(StringTable* t, char* str);
 void addStrToStrTable(StringTable* t, char* str);
 int positionInStrTable(StringTable* t, char* str);
+void expandStrTable(StringTable* t);
 
 #endif

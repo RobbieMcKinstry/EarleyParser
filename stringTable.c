@@ -47,6 +47,7 @@ int positionInStrTable(StringTable* t, char* str) {
 	return result;
 }
 
+// takes a table, and expends it, returning a table with twice the capasity
 void expandStrTable(StringTable* t) {
 	
 	int size = t->size;
@@ -54,5 +55,7 @@ void expandStrTable(StringTable* t) {
 	char* charBuff = (char*) calloc(capasity, sizeof(char));
 
 	StringTable temp = (StringTable) {.size = size, .capasity = capasity, .characterBuffer = charBuff };
+	memcpy(charBuff, t->characterBuff, t->size);
+	
 	t = &temp;
 }
