@@ -2,8 +2,6 @@ include an expandTable() function into stringIndexTable, using memcpy()
 
 include an expandTable() function into tokenKind table, using memcpy()
 
-adjust the IsFull function to compare size == capasity
-
 write the code that actually takes a Lex* and adds its lexeme to the symbol table, using the functions in stringTable and stringIndexTable 
 
 write unit tests for everything.

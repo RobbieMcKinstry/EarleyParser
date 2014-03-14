@@ -57,5 +57,5 @@ void expandStrTable(StringTable* t) {
 	StringTable temp = (StringTable) {.size = size, .capasity = capasity, .characterBuffer = charBuff };
 	memcpy(charBuff, t->characterBuff, t->size);
 	
-	t = &temp;
+	*t = temp;
 }

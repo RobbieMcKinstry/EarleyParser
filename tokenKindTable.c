@@ -23,18 +23,13 @@ void addTokenToTKTable(TokenKindTable* table, Token token, TokenKind tk) {
 	table->table[token] = tk;
 }
 
-// TODO implement
+
 void expandTKTable(TokenKindTable* table) {
-	
+	TokenKind* temp = (TokenKind*) calloc(2*table->capasity, sizeof(TokenKind));
+	TokenKindTable result = {.table = temp, .size = 1, .capasity = INITIAL_TK_TABLE_SIZE};
+	*table = result;
 }
 
 bool TKTableIsFull(TokenKindTable* table) { 
-	bool result = true;
-	for(int i = 1; i < size; i++) {
-		if(!table=->table[i]) {
-			result = false;
-			break;
-		}
-	}
-	return result;
+	return table->size == table->capasity;
 }

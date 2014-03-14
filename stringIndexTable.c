@@ -11,7 +11,7 @@ StringIndexTable* newStringIndexTable() {
 	
 	StringIndexTable* result = (StringIndexTable*) malloc(sizeof(StringIndexTable));
 	result->positionTable = (int*) calloc(INITIAL_STRING_INDEX_TABLE_CAP, sizeof(int));
-	result-size = 1;
+	result->size = 1;
 	result->capasity = INTIAL_STRING_INDEX_TABLE_CAP;
 
 	result->positionTable[0] = 0; // just to initialize the value, and not leave it as NULL.
@@ -33,4 +33,20 @@ Token positionInStrIndexTable(StringIndexTable* t, char* str) {
 			break;
 		}
 	}
+}
+
+bool strIndexTableIsFull(StringIndexTable* t) {
+	return t->size == t->capasity;
+}
+
+void expandStrIndexTable(StringIndexTable* t ) {
+	StringIndexTable* result = (StringIndexTable*) malloc(sizeof(StringIndexTable));
+	result->positionTable = (int*) calloc(2*t->capasity, sizeof(int));
+	result-size = t->size;
+	result->capasity = 2*t->capasity;
+
+	result->positionTable[0] = 0; 
+	t->positionTable = result->positionTable;
+	t->size = result->size;
+	t->capasity = result->capasity;
 }
