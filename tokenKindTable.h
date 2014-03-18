@@ -3,6 +3,9 @@
 
 #include <stdbool.h>
 
+typedef int Token;
+
+// TODO identifier, string literal, floating point literal, operator, punctuation...
 typedef enum { 
 	NONTERMINAL = 1,
 	TERMINAL,

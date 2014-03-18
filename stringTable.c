@@ -1,9 +1,15 @@
+#include <stdlib.h>
 #include "stringTable.h"
 #include "strings.h"
 
+/////////////////////////////////////////////
+bool strTableCanFit(StringTable* t, char* str); 
+void expandStrTable(StringTable* t); // encp
+//////////////////////////////////////////////
+
 
 StringTable* newStringTable() {
-	char* buff = calloc(INITIAL_STRING_TABLE_SIZE, sizeof(char));
+	char* buff = calloc(INITIAL_STRING_TABLE_SIZE, sizeof(char)); // TODO change to malloc
 	StringTable* result = (StringTable*) malloc(sizeof(StringTable));
 	
 	buff[0] = '\0'; // better just initialize it... just in case...
@@ -25,9 +31,18 @@ bool strTableCanFit(StringTable* t, char* str) {
 	return result;
 }
 
-void addStrToStrTable(StringTable* t, char* str) {
-	char* location = t->characterBuffer + t-size;
+
+// param: t - the table acted upon
+// param: str - the string to be added
+// return: the position in the array where the string starts
+int addStrToStrTable(StringTable* t, char* str) {
+	if(!strTableCanFit(t, str)) {
+		expandStrTable(t);
+	}
+	char* location = t->characterBuffer + t->size;
 	strcpy(location, str);
+	t->size++;
+	return t->size - 1; // the position in the array where the string starts
 }
 
 
@@ -35,17 +50,21 @@ void addStrToStrTable(StringTable* t, char* str) {
 int positionInStrTable(StringTable* t, char* str) {
 	
 	int result = 0;
-	char* pointer = t->charcterBuffer + 1;
+	char* pointer = t->characterBuffer + 1;
 	while(true) {
 		int test = strcmp(pointer, str);
 		if(test) {
-			result = pointer - t-characterBuffer;
+			result = pointer - t->characterBuffer;
 			break;
 		}
-		pointer = pointer + strlen(pointer);
+		pointer = pointer + strlen(pointer); //TODO use stingIndexTable to search.
+		if (pointer > (t->characterBuffer + t->size)) {
+			break;
+		}
 	}
 	return result;
 }
+
 
 // takes a table, and expends it, returning a table with twice the capasity
 void expandStrTable(StringTable* t) {
@@ -55,7 +74,7 @@ void expandStrTable(StringTable* t) {
 	char* charBuff = (char*) calloc(capasity, sizeof(char));
 
 	StringTable temp = (StringTable) {.size = size, .capasity = capasity, .characterBuffer = charBuff };
-	memcpy(charBuff, t->characterBuff, t->size);
+	memcpy(charBuff, t->characterBuffer, t->size);
 	
 	*t = temp;
 }

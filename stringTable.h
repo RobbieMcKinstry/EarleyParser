@@ -15,12 +15,10 @@ typedef struct {
 } StringTable;
 
 StringTable* stringTable;
-
 StringTable* newStringTable();
 
-bool strTableCanFit(StringTable* t, char* str);
-void addStrToStrTable(StringTable* t, char* str);
-int positionInStrTable(StringTable* t, char* str);
-void expandStrTable(StringTable* t);
+int addStrToStrTable(StringTable* t, char* str);
+int positionInStrTable(StringTable* t, char* str); // meh, not nneeded, and doesn't work
+
 
 #endif

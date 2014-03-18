@@ -19,5 +19,6 @@ StringIndexTable* newStringIndexTable();
 Token positionInTable(StringIndexTable* t, char* str);
 bool strIndexTableIsFull(StringIndexTable* t);
 void expandStrIndexTable(StringIndexTable* t);
+void addStrToStrIndexTable(StringIndexTable* t, char* str);
 
 #endif

@@ -1,5 +1,7 @@
+#include <stdlib.h>
 #include "stringIndexTable.h"
 #include <stdbool.h>
+#include <strings.h>
 
 #include "stringTable.h"
 
@@ -12,7 +14,7 @@ StringIndexTable* newStringIndexTable() {
 	StringIndexTable* result = (StringIndexTable*) malloc(sizeof(StringIndexTable));
 	result->positionTable = (int*) calloc(INITIAL_STRING_INDEX_TABLE_CAP, sizeof(int));
 	result->size = 1;
-	result->capasity = INTIAL_STRING_INDEX_TABLE_CAP;
+	result->capasity = INITIAL_STRING_INDEX_TABLE_CAP;
 
 	result->positionTable[0] = 0; // just to initialize the value, and not leave it as NULL.
 
@@ -24,10 +26,10 @@ StringIndexTable* newStringIndexTable() {
 // return: the token representing the string
 Token positionInStrIndexTable(StringIndexTable* t, char* str) { 
 	Token result = (Token) 0;
-	for(int i = 1; i < size; i++) {
+	for(int i = 1; i < t->size; i++) {
 		int index = t->positionTable[i];
 		char* tabledString =  stringTable->characterBuffer[index];
-		int areEqual = strcmp(elem, str);
+		int areEqual = strcmp(tabledString, str);
 		if(areEqual) {
 			result = (Token) i;
 			break;
@@ -42,7 +44,7 @@ bool strIndexTableIsFull(StringIndexTable* t) {
 void expandStrIndexTable(StringIndexTable* t ) {
 	StringIndexTable* result = (StringIndexTable*) malloc(sizeof(StringIndexTable));
 	result->positionTable = (int*) calloc(2*t->capasity, sizeof(int));
-	result-size = t->size;
+	result->size = t->size;
 	result->capasity = 2*t->capasity;
 
 	result->positionTable[0] = 0; 

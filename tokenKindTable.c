@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "tokenKindTable.h"
 #include <stdbool.h>
 

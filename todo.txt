@@ -1,3 +1,13 @@
+things that need to be done:
+
+compile stringTable
+compile stringIndexTable
+compile tokenKindTable
+compile Frame
+
+
+$$$$ given a sequence of inputs, show the token numbers associated with them.
+
 include an expandTable() function into stringIndexTable, using memcpy()
 
 include an expandTable() function into tokenKind table, using memcpy()
@@ -17,3 +27,5 @@ frame file
 queue file
 
 memo file
+
+grammar representation.
