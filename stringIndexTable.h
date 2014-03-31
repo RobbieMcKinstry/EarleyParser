@@ -16,9 +16,9 @@ typedef struct {
 StringIndexTable stringIndexTable;
 
 StringIndexTable* newStringIndexTable();
-Token positionInTable(StringIndexTable* t, char* str);
+Token positionInStrIndexTable(StringIndexTable* t, char* str);
 bool strIndexTableIsFull(StringIndexTable* t);
 void expandStrIndexTable(StringIndexTable* t);
-void addStrToStrIndexTable(StringIndexTable* t, char* str);
+Token addStrToStrIndexTable(StringIndexTable* t, StringTable* st, char* str);
 
 #endif

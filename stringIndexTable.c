@@ -26,15 +26,17 @@ StringIndexTable* newStringIndexTable() {
 // return: the token representing the string
 Token positionInStrIndexTable(StringIndexTable* t, char* str) { 
 	Token result = (Token) 0;
+	printf("%i", t->size);
 	for(int i = 1; i < t->size; i++) {
 		int index = t->positionTable[i];
-		char* tabledString =  stringTable->characterBuffer[index];
-		int areEqual = strcmp(tabledString, str);
+		char* tabledString =  stringTable->characterBuffer + index;
+		int areEqual = !strcmp(tabledString, str);
 		if(areEqual) {
 			result = (Token) i;
 			break;
 		}
 	}
+	return result;
 }
 
 bool strIndexTableIsFull(StringIndexTable* t) {
@@ -51,4 +53,19 @@ void expandStrIndexTable(StringIndexTable* t ) {
 	t->positionTable = result->positionTable;
 	t->size = result->size;
 	t->capasity = result->capasity;
+}
+
+
+// param: t - the stringIndexTable you're using
+// param: st - the string table you want to add the string to
+// param: str - a string to add
+// return: the token representing the string added.
+Token  addStrToStrIndexTable(StringIndexTable* t, StringTable* st, char* str) {
+	if(strIndexTableIsFull(t)) {
+		expandStrIndexTable(t);
+	}
+	int position = addStrToStrTable(st, str);
+	t->positionTable[st->size] = position;
+	t->size++; // this line is not getting executed.
+	return st->size - 1;	
 }
