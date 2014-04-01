@@ -2,8 +2,7 @@
 #define TOKEN_KIND_TABLE_H
 
 #include <stdbool.h>
-
-typedef int Token;
+#include "stringIndexTable.h"
 
 // TODO identifier, string literal, floating point literal, operator, punctuation...
 typedef enum { 
