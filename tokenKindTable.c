@@ -32,10 +32,12 @@ void addTokenToTKTable(TokenKindTable* table, Token token, TokenKind tk) {
 
 void expandTKTable(TokenKindTable* table) {
 	TokenKind* temp = (TokenKind*) calloc(2*table->capasity, sizeof(TokenKind));
-
-	TokenKindTable result = {.table = temp, .size = table->size, .capasity = INITIAL_TK_TABLE_SIZE};
-	memcpy(result.table, table->table, table->size);
-	*table = result;
+	TokenKindTable result = (TokenKindTable*) malloc(sizeof(TokenKindTable));
+	result->table = temp;
+	result->size = table->size;
+	result->capasity = 2 * table->capasity;
+	memcpy(result->table, table->table, table->size);
+	*table = *result;
 }
 
 bool TKTableIsFull(TokenKindTable* table) { 
