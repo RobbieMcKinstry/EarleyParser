@@ -64,6 +64,8 @@ void convertLineToCode(char* line) {
 	temp[distance + 1] = '\0';
 	writeString(gc, temp);
 
+	// TODO: now read in the equals sign!!!!!!
+
 	for (int i = 0, char next; next != '\n'; next = line[++i]) {
 		// process the alternatives
 		// this won't work, because we need to write 0 for the last alternative!!!
