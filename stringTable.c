@@ -74,7 +74,6 @@ void expandStrTable(StringTable* t) {
 	char* charBuff = (char*) calloc(capasity, sizeof(char));
 
 	StringTable temp = (StringTable) {.size = size, .capasity = capasity, .characterBuffer = charBuff };
-	memcpy(charBuff, t->characterBuffer, t->size);
-	
+	memcpy(charBuff, t->characterBuffer, t->size);	
 	*t = temp;
 }
