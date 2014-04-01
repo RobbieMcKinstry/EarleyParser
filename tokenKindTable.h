@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include "stringIndexTable.h"
 
-// typedef int Token;
 
 // TODO identifier, string literal, floating point literal, operator, punctuation...
 typedef enum { 

@@ -43,7 +43,7 @@ int addStrToStrTable(StringTable* t, char* str) {
 	}
 	char* location = t->characterBuffer + t->size;
 	strcpy(location, str);
-	t->size++;
+	t->size = t->size + strlen(str) + 1;
 	return result; // the position in the array where the string starts
 }
 
@@ -70,7 +70,7 @@ int positionInStrTable(StringTable* t, char* str) {
 
 // takes a table, and expends it, returning a table with twice the capasity
 void expandStrTable(StringTable* t) {
-	
+	printf("Expanding string table.");	
 	int size = t->size;
 	int capasity = t->capasity * 2;
 	char* charBuff = (char*) calloc(capasity, sizeof(char));
