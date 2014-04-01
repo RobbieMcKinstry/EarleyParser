@@ -70,7 +70,7 @@ int positionInStrTable(StringTable* t, char* str) {
 
 // takes a table, and expends it, returning a table with twice the capasity
 void expandStrTable(StringTable* t) {
-	
+	printf("Expanding string table.");	
 	int size = t->size;
 	int capasity = t->capasity * 2;
 	char* charBuff = (char*) calloc(capasity, sizeof(char));
