@@ -36,13 +36,15 @@ bool strTableCanFit(StringTable* t, char* str) {
 // param: str - the string to be added
 // return: the position in the array where the string starts
 int addStrToStrTable(StringTable* t, char* str) {
+	int result = t->size;
+
 	if(!strTableCanFit(t, str)) {
 		expandStrTable(t);
 	}
 	char* location = t->characterBuffer + t->size;
 	strcpy(location, str);
-	t->size++;
-	return t->size - 1; // the position in the array where the string starts
+	t->size = t->size + strlen(str) + 1;
+	return result; // the position in the array where the string starts
 }
 
 
