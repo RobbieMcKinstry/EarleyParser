@@ -47,9 +47,10 @@ void writeChar(GrammarCode* gc, char c) {
 	gc->bufferSize++;
 }
 
-void convertLineToCode(char* line) {
+void convertLineToCode(GrammarCode* gc, char* line) {
 	// write an equals sign, followed by a space into the buffer
 	writeString(gc, "= ");
+	
 	char* line = skipLeadingWhitespace(line); // skip any whitespace/control characters
 	// read until you reach another whitespace character, TODO: or until your reach an equals sign.
 	char* endOfNonterminal = nextWhiteSpace(line);
@@ -64,7 +65,23 @@ void convertLineToCode(char* line) {
 	temp[distance + 1] = '\0';
 	writeString(gc, temp);
 
-	// TODO: now read in the equals sign!!!!!!
+	// now, we read in the equals sign
+	equalsSign = skipLeadingWhitespace(endOfNonterminal); 
+	if (equalsSign[0] != '=') {
+		printf("We expected the next character to be an equals sign, but it was actually %s", equalsSign[0]);
+	}
+	char nonterminals = equalsSign + 1; // now, we have a bunch of nonterminals, new line terminated.
+	int numberAlternatives = countAlternatives(nonterminals);
+
+	for(int i = 0; i < numberAlternatives; i++) {
+		// how many characters in this alternative?
+		// read the first word in.
+		// add it to the symbol table.
+		// write it's Token to the grammar code.
+	}
+
+
+
 
 	for (int i = 0, char next; next != '\n'; next = line[++i]) {
 		// process the alternatives
@@ -90,14 +107,26 @@ void convertLineToCode(char* line) {
 	//  return the location of the first equals sign.
 }
 
+// returns a pointer to next non-whitespace non-control character
 char* skipLeadingWhitespace(char* line) {
 	while(line[0] <= ' ') 
 		line = line + 1;
 	return line;
 }
 
+// returns a pointer to the next whitespace character after the pointer
 char* nextWhiteSpace(char* line) {
 	while(line[0] > ' ')
 		line = line + 1;
 	return line;
+}
+
+int countAlternatives(char* line) {
+	int count = 0;
+	while(line[0] != '\n' || line[0] != '.') {
+		if(line[0] == '|') {
+			count++;
+		}
+	}
+	return count + 1;
 }
