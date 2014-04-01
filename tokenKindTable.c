@@ -9,8 +9,11 @@ bool TKTableIsFull(TokenKindTable* table);
 
 TokenKindTable* newTokenKindTable() {
 	TokenKind* temp = (TokenKind*) calloc(INITIAL_TK_TABLE_SIZE, sizeof(TokenKind));
-	TokenKindTable result = {.table = temp, .size = 1, .capasity = INITIAL_TK_TABLE_SIZE};
-	return &result;
+	TokenKindTable* result = (TokenKindTable*) malloc(sizeof(TokenKindTable));
+	result->table = temp;
+	result->size = 1;
+	result->capasity = INITIAL_TK_TABLE_SIZE;
+	return result;
 }
 
 // given a token (which maps to a TK for that token), return it's TK.
