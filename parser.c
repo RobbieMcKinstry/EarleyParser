@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 				while(distanceToNextAlternative) {
 					Frame* nextAlt = newFrame(); // that means we're not on the last alternative for that production yet.
 					nextAlt->ic = instruction - parser->symbolTable->grammarCode->buffer; // distance into the buffer is (the current - the start of the buffer)
-					nextAlt->caller = currentFrame;
+					nextAlt->caller = currentFrame; // //// TODO use a switch statement!
 					nextAlt->qlink = currentFrame->qlink;
 					q1->qlink = nextAlt;
 					distanceToNextAlternative = (instruction + distanceToNextAlternative)[1]; // uses index 1 because otherwise we'd point directly to a |
@@ -80,7 +80,12 @@ int main(int argc, char *argv[]) {
 					// 			if no return exists, 
 					// 				find the location in the grammar of that token, and point to it in a new frame.
 			}
-			
+
+
+
+			// what if you recognize but youre not at the end of the input? you recognize a prefix of what the user input
+			// what if its ambiguous? and there are more returns to the highest level thing?2
+
 		} else { // handle the case where we advance the input token, and swap the queues.
 			free(*q1); // will this actually do the job recursively?
 			q1 = q2;
