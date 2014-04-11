@@ -36,6 +36,8 @@ bool strTableCanFit(StringTable* t, char* str) {
 // param: str - the string to be added
 // return: the position in the array where the string starts
 int addStrToStrTable(StringTable* t, char* str) {
+	int result = t->size;
+
 	if(!strTableCanFit(t, str)) {
 		expandStrTable(t);
 	}
@@ -44,14 +46,6 @@ int addStrToStrTable(StringTable* t, char* str) {
 	strcpy(startLocation, str);
 	t->size = t->size + strlen(str);
 	return nextOpenSpot;
-/*
-
-	char* location = t->characterBuffer + t->size + 1;
-	strcpy(location, str);
-	t->characterBuffer[location + strlen(str)] = '\0';
-	t->size = t->size + strlen(str);
-	return location - t->characterBuffer; // the position in the array where the string starts
-*/
 }
 
 
@@ -77,7 +71,7 @@ int positionInStrTable(StringTable* t, char* str) {
 
 // takes a table, and expends it, returning a table with twice the capasity
 void expandStrTable(StringTable* t) {
-	
+	printf("Expanding string table.");	
 	int size = t->size;
 	int capasity = t->capasity * 2;
 	char* charBuff = (char*) calloc(capasity, sizeof(char));
