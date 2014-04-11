@@ -7,20 +7,6 @@
 #define cIsDigit (c >= '0' && c <= '9')
 #define cIsAlphanum (cIsAlpha || cIsDigit)
 
-int main() {
-
-	Lex* lex = newLex();
-	(*lex).next = getchar();
-	
-	do {
-		lexicalAnalyze(lex);
-		puts((*lex).lexeme); // normally, other application logic goes here.
-	
-	} while((*lex).next != EOF);
-
-	return 0;
-}
-
 Lex* newLexer() {
 	Lex* lex = (Lex*) malloc(sizeof(Lex));
 	lex->lexeme = NULL;

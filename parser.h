@@ -11,6 +11,7 @@ typedef struct {
 void setGrammarFile(Parser* p, char* path);
 void setSentenceFile(Parser* p, char* path);
 Parser* newParser();
-bootstrapGrammar(Parser* parser);
+void bootstrapGrammar(Parser* parser);
+Token* addSentenceToSymbolTable(Parser* p);
 
 #endif

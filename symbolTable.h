@@ -11,6 +11,6 @@ typedef struct {
 } SymbolTable;
 
 SymbolTable* newSymbolTable();
-Token* addSentenceToSymbolTable();
+
 
 #endif
