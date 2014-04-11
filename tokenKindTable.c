@@ -5,9 +5,8 @@
 #define INITIAL_TK_TABLE_SIZE 1000
 
 TokenKindTable* newTokenKindTable() {
-	TokenKind* temp = (TokenKind*) calloc(INITIAL_TK_TABLE_SIZE, sizeof(TokenKind));
 	TokenKindTable* result = (TokenKindTable*) malloc(sizeof(TokenKindTable));
-	result->table = temp;
+	result->table = (TokenKind*) calloc(INITIAL_TK_TABLE_SIZE, sizeof(TokenKind));
 	result->size = 1;
 	result->capasity = INITIAL_TK_TABLE_SIZE;
 	return result;

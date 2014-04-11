@@ -41,10 +41,11 @@ int addStrToStrTable(StringTable* t, char* str) {
 	if(!strTableCanFit(t, str)) {
 		expandStrTable(t);
 	}
-	char* location = t->characterBuffer + t->size;
-	strcpy(location, str);
-	t->size = t->size + strlen(str) + 1;
-	return result; // the position in the array where the string starts
+	int nextOpenSpot = t->size;
+	char* startLocation = &(t->characterBuffer[nextOpenSpot]);
+	strcpy(startLocation, str);
+	t->size = t->size + strlen(str);
+	return nextOpenSpot;
 }
 
 

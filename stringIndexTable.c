@@ -67,5 +67,9 @@ Token  addStrToStrIndexTable(StringIndexTable* t, StringTable* st, char* str) {
 	int position = addStrToStrTable(st, str);
 	t->positionTable[t->size] = position;
 	t->size++; // this line is not getting executed.
+<<<<<<< HEAD
+	return t->size - 1;	
+=======
 	return t->size - 1;
+>>>>>>> master
 }

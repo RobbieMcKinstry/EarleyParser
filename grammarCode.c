@@ -21,7 +21,7 @@ void expandGrammarCode(GrammarCode* gc) {
 
 void writeString(GrammarCode* gc, char* string) {
 	int len = strlen(string);
-	if (gc->bufferSize + len >= bufferCap) {
+	if (gc->bufferSize + len >= gc->bufferCap) {
 		expandGrammar(gc);
 	}
 	for(int i = 0; i < len - 1; i++) {
